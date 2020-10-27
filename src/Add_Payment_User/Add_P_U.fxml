@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="AP" prefHeight="705.0" prefWidth="1043.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Add_Payment_User.Add_P_UController">
+    <stylesheets>
+        <URL value="@add_p_u.css" />
+    </stylesheets>
+   <children>
+      <VBox prefHeight="736.0" prefWidth="1043.0">
+         <children>
+            <HBox prefHeight="129.0" prefWidth="829.0" style="-fx-background-color: #00bcd4;">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="129.0" prefWidth="340.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="الايرادات اليومية" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="50.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXButton buttonType="RAISED" onAction="#Exit" ripplerFill="WHITE" text="X" textFill="RED">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXTextField fx:id="Amount" alignment="CENTER" labelFloat="true" layoutX="14.0" layoutY="22.0" prefHeight="35.0" prefWidth="150.0" promptText="المبلغ" text="0" />
+                        <JFXDatePicker fx:id="Date" defaultColor="#00bcd4" layoutX="14.0" layoutY="78.0" prefHeight="35.0" prefWidth="150.0" promptText="التاريخ" showWeekNumbers="true" />
+                        <JFXTextField fx:id="subject" alignment="CENTER" labelFloat="true" layoutX="14.0" layoutY="139.0" prefHeight="35.0" prefWidth="150.0" promptText="الماده" />
+                        <JFXComboBox fx:id="Faculty" labelFloat="true" layoutX="879.0" layoutY="22.0" prefHeight="35.0" prefWidth="150.0" promptText="الكلية" />
+                        <JFXComboBox fx:id="Type_OF" labelFloat="true" layoutX="164.0" layoutY="22.0" prefHeight="35.0" prefWidth="72.0" promptText="نوع العملية" />
+                        <ToolBar layoutX="14.0" layoutY="191.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: none;">
+                           <items>
+                              <JFXButton buttonType="RAISED" onAction="#Add" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="اضافة" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </JFXButton>
+                           </items>
+                        </ToolBar>
+                        <JFXTreeTableView fx:id="table" layoutX="14.0" layoutY="248.0" onMouseClicked="#select" prefHeight="348.0" prefWidth="1014.0">
+                           <columnResizePolicy>
+                              <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </JFXTreeTableView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="Total_OF_Day" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="7.0" prefHeight="41.0" prefWidth="157.0" style="-fx-background-color: #222222;" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Total" alignment="CENTER" contentDisplay="CENTER" layoutX="181.0" layoutY="7.0" prefHeight="41.0" prefWidth="261.0" style="-fx-background-color: #222222;" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Total_OF_Day1" alignment="CENTER" contentDisplay="CENTER" layoutX="872.0" layoutY="7.0" prefHeight="41.0" prefWidth="157.0" style="-fx-background-color: #222222;" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Total1" alignment="CENTER" contentDisplay="CENTER" layoutX="598.0" layoutY="8.0" prefHeight="41.0" prefWidth="261.0" style="-fx-background-color: #222222;" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

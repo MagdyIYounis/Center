@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="595" pageHeight="421" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="51cfdefc-4c78-4dd5-ba74-273794c05a2b">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1" fill="Solid" radius="2" hAlign="Left" vAlign="Top">
+		<box>
+			<pen lineStyle="Double"/>
+			<topPen lineWidth="0.75" lineStyle="Double"/>
+			<leftPen lineWidth="0.75" lineStyle="Double"/>
+			<bottomPen lineWidth="0.75" lineStyle="Double"/>
+			<rightPen lineWidth="0.75" lineStyle="Double"/>
+		</box>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     cart.`Student` AS cart_Student,
+     cart.`Name` AS cart_Name,
+     cart.`Total` AS cart_Total,
+     cart.`Date Loign` AS cart_Date_Loign,
+     cart.`Name Subject` AS cart_Name_Subject,
+     cart.`Date` AS cart_Date,
+     cart.`ID Group` AS cart_ID_Group
+FROM
+     `cart` cart
+WHERE
+cart.Student IN (SELECT all_student.Student FROM all_student WHERE all_student.Student in (SELECT all_student.Student from all_student WHERE all_student.ID_SU =3 ) GROUP BY all_student.Student HAVING count(all_student.Student) = 1
+)]]>
+	</queryString>
+	<field name="cart_Student" class="java.lang.Integer"/>
+	<field name="cart_Name" class="java.lang.String"/>
+	<field name="cart_Total" class="java.lang.String"/>
+	<field name="cart_Date_Loign" class="java.sql.Timestamp"/>
+	<field name="cart_Name_Subject" class="java.lang.String"/>
+	<field name="cart_Date" class="java.lang.String"/>
+	<field name="cart_ID_Group" class="java.lang.Integer"/>
+	<group name="cart_Student" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{cart_Student}]]></groupExpression>
+		<groupHeader>
+			<band height="79">
+				<image>
+					<reportElement x="0" y="0" width="85" height="79" uuid="1abf3c82-1354-4d42-a5b7-cc0af0de0375"/>
+					<imageExpression><![CDATA["C:\\Users\\goda4\\Documents\\NetBeansProjects\\Center Elgam3a\\src\\image\\wood.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="484" y="0" width="71" height="20" uuid="d08aa980-af6c-4fac-8f80-9ddcf852b1ca"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[كود الطالب :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="396" y="0" width="89" height="20" uuid="40744d4b-a92c-437f-a40b-c3828ac4634f"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cart_Student}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="484" y="20" width="71" height="20" uuid="938d05a0-7a88-4e99-a8a3-37801763b5af"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[اسم الطالب :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="315" y="20" width="170" height="20" uuid="ec8b3701-32fc-4d59-9bd7-c4de38606cde"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cart_Name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement style="style1" mode="Transparent" x="445" y="4" width="100" height="20" uuid="8129cf7b-4f7a-483c-92e2-1e4315f529cb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cart_Name_Subject}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" mode="Transparent" x="346" y="4" width="100" height="20" uuid="8260f119-f837-4f84-b16c-9ea36f90cc0a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cart_Total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" mode="Transparent" x="6" y="4" width="143" height="20" uuid="6b1bf7ec-eedb-4478-af41-9ccc689b9726"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cart_Date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" mode="Transparent" x="148" y="4" width="100" height="20" uuid="ef3516df-b4b0-4652-9282-a137fd5bc98e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cart_ID_Group}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style1" mode="Transparent" x="247" y="4" width="100" height="20" uuid="fa3cbe94-ebf4-4f06-a358-3f8223c7fa0c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cart_Date_Loign}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="0" y="0" width="168" height="54" uuid="74e2be9b-a2a6-44d9-a4be-ec46d4a8a903"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="168" y="0" width="387" height="54" uuid="5844150a-ea47-4a0b-b445-e9d046f4b19c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[01000404123 - 01000046957]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,25 @@
+.B1{
+    -fx-background-color: #222222;
+}
+.B1:hover{
+    
+     -fx-background-color: #ffffff;
+     -fx-text-fill: black
+    
+}
+.jfx-snackbar-content{
+    
+     -fx-background-color: #f00;
+     -fx-pref-width: 400
+   
+}
+.jfx-snackbar-toast{
+    
+    -fx-text-fill:#ffffff;
+    -fx-font-size:18px;
+    
+   
+}
+
+
+

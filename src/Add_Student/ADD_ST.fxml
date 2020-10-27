@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.ListSelectionView?>
+<?import org.controlsfx.control.MaskerPane?>
+
+<VBox fx:id="VBX" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="746.0" prefWidth="1072.0" stylesheets="@add_st.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Add_Student.ADD_STController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="88.0" prefWidth="805.0" style="-fx-background-color: #00bcd4;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="88.0" prefWidth="238.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label prefHeight="81.0" prefWidth="324.0" text="اضافة الطلاب" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="55.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/iconfinder_Student-3_379413.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <JFXButton buttonType="RAISED" onAction="#exit" ripplerFill="WHITE" text="X" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+               </children></VBox>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <JFXTabPane fx:id="tab" HBox.hgrow="ALWAYS">
+               <tabs>
+                  <Tab text="اضافة الطالب">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <JFXTextField fx:id="Name" labelFloat="true" layoutX="21.0" layoutY="24.0" prefHeight="35.0" prefWidth="200.0" promptText="اسم الطالب" />
+                              <JFXTextField fx:id="Phone" labelFloat="true" layoutX="23.0" layoutY="82.0" prefHeight="35.0" prefWidth="200.0" promptText="رقم التليفون" />
+                              <JFXComboBox fx:id="Unicersty" labelFloat="true" layoutX="286.0" layoutY="24.0" prefHeight="35.0" prefWidth="120.0" promptText="الجامعة" />
+                              <JFXComboBox fx:id="Faclty" labelFloat="true" layoutX="286.0" layoutY="82.0" prefHeight="35.0" prefWidth="120.0" promptText="الكلية" />
+                              <JFXComboBox fx:id="Years" labelFloat="true" layoutX="286.0" layoutY="138.0" prefHeight="35.0" prefWidth="120.0" promptText="الفرقة" />
+                              <JFXRadioButton fx:id="Male" contentDisplay="CENTER" layoutX="21.0" layoutY="138.0" prefHeight="35.0" prefWidth="108.0" text="ذكر">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="G1" />
+                                 </toggleGroup>
+                              </JFXRadioButton>
+                              <JFXRadioButton fx:id="Female" layoutX="129.0" layoutY="138.0" prefHeight="35.0" prefWidth="97.0" selected="true" text="انثي" toggleGroup="$G1" />
+                              <JFXToolbar layoutX="601.0" layoutY="20.0" prefHeight="166.0" prefWidth="324.0">
+                                 <top>
+                                    <JFXButton buttonType="RAISED" onAction="#ALL" prefHeight="35.0" prefWidth="83.0" ripplerFill="#fcfcfc" style="-fx-background-color: #353b48;" text="الكل" textFill="WHITE" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </top>
+                                 <center>
+                                    <JFXButton fx:id="Subject_bu" buttonType="RAISED" onAction="#New_Student" prefHeight="35.0" prefWidth="83.0" ripplerFill="#fcfcfc" style="-fx-background-color: #353b48;" text="حجز" textFill="WHITE" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <tooltip>
+                                          <Tooltip contentDisplay="CENTER" text="Ctrl + R">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Tooltip>
+                                       </tooltip>
+                                    </JFXButton>
+                                 </center>
+                                 <right>
+                                    <JFXButton fx:id="Delete" buttonType="RAISED" onAction="#Delete_Student" prefHeight="35.0" prefWidth="83.0" ripplerFill="#fcfcfc" style="-fx-background-color: #353b48;" text="حذف" textFill="WHITE" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <tooltip>
+                                          <Tooltip contentDisplay="CENTER" text="Ctrl + D">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Tooltip>
+                                       </tooltip>
+                                    </JFXButton>
+                                 </right>
+                                 <bottom>
+                                    <JFXButton fx:id="Update" buttonType="RAISED" onAction="#Update_Student" prefHeight="35.0" prefWidth="83.0" ripplerFill="#fcfcfc" style="-fx-background-color: #353b48;" text="تعديل" textFill="WHITE" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <tooltip>
+                                          <Tooltip contentDisplay="CENTER" text="Ctrl + U">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Tooltip>
+                                       </tooltip>
+                                    </JFXButton>
+                                 </bottom>
+                                 <left>
+                                    <JFXButton fx:id="ADD" buttonType="RAISED" onAction="#ADD_Student" prefHeight="35.0" prefWidth="83.0" ripplerFill="#fcfcfc" style="-fx-background-color: #353b48;" text="أضافة" textFill="WHITE" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <tooltip>
+                                          <Tooltip contentDisplay="CENTER" text="Ctrl + S">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Tooltip>
+                                       </tooltip>
+                                    </JFXButton>
+                                 </left>
+                              </JFXToolbar>
+                              <TableView fx:id="Tree" editable="true" layoutX="8.0" layoutY="212.0" onMouseClicked="#select" prefHeight="399.0" prefWidth="1057.0" styleClass="mainFxmlClass">
+</TableView>
+                              <VBox fx:id="VB_Loader2" prefHeight="624.0" prefWidth="1072.0" visible="false">
+                                 <children>
+                                    <MaskerPane prefHeight="625.0" prefWidth="1072.0" text="جاري الحفظ....." />
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="حجز المواد">
+                    <content>
+                      <AnchorPane focusTraversable="true" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <JFXTextField fx:id="ID_Subject" alignment="CENTER" labelFloat="true" layoutX="489.0" layoutY="65.0" onKeyPressed="#Enter" prefHeight="35.0" prefWidth="94.0" promptText="كود الطالب" />
+                              <JFXButton buttonType="RAISED" layoutX="486.0" layoutY="513.0" onAction="#Save" prefHeight="42.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #353b48;" text="حجز" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip contentDisplay="CENTER" text="Ctrl + S">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </JFXButton>
+                              <ListSelectionView fx:id="Subject" layoutX="216.0" layoutY="121.0" prefHeight="382.0" prefWidth="640.0" />
+                              <VBox fx:id="VB_Loader1" prefHeight="624.0" prefWidth="1072.0" visible="false">
+                                 <children>
+                                    <MaskerPane prefHeight="625.0" prefWidth="1072.0" text="جاري الحفظ....." />
+                                 </children>
+                              </VBox>
+                              <Label fx:id="L2" contentDisplay="CENTER" layoutX="593.0" layoutY="66.0" prefHeight="39.0" prefWidth="250.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="دفع سريع">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <JFXTextField fx:id="ID_Amount" alignment="CENTER" labelFloat="true" layoutX="521.0" layoutY="41.0" prefHeight="35.0" prefWidth="75.0" promptText="كود الطالب" />
+                              <ScrollPane layoutX="221.0" layoutY="102.0" prefHeight="378.0" prefWidth="665.0">
+                                <content>
+                                  <AnchorPane fx:id="Win" minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="663.0" style="-fx-background-color: #ffffff;" />
+                                </content>
+                              </ScrollPane>
+                              <JFXButton buttonType="RAISED" layoutX="499.0" layoutY="504.0" onAction="#Save_Amount" prefHeight="38.0" prefWidth="75.0" ripplerFill="WHITE" style="-fx-background-color: #353b48;" text="حفظ" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip contentDisplay="CENTER" text="Ctrl + S">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Tooltip>
+                                 </tooltip>
+                              </JFXButton>
+                              <VBox fx:id="VB_Loader" alignment="CENTER" prefHeight="624.0" prefWidth="1072.0" visible="false">
+                                 <children>
+                                    <MaskerPane prefHeight="624.0" prefWidth="1072.0" text="جاري الحفظ....." />
+                                 </children>
+                              </VBox>
+                              <Label fx:id="L1" contentDisplay="CENTER" layoutX="606.0" layoutY="39.0" prefHeight="38.0" prefWidth="277.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="Nodes" alignment="CENTER" labelFloat="true" layoutX="222.0" layoutY="42.0" prefHeight="35.0" prefWidth="289.0" style="-fx-background-color: #f5f7d5;">
+                                 <font>
+                                    <Font name="System Bold" size="10.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>

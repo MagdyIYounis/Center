@@ -1,0 +1,83 @@
+/*
+ * Empty Stylesheet file.
+ */
+.table-cell {     
+    -fx-padding: 0.8em 0em 0.5em 0.3em;
+    -fx-border-color: transparent #3599cd transparent transparent;  
+    -fx-font: 13px "Segoe UI";    
+    -fx-text-fill: #212121;
+}
+.table-view {
+    -fx-table-header-border-color: transparent;
+    -fx-border-color: #3599cd #3599cd #3599cd #3599cd;
+}
+.table-column {
+  -fx-alignment: CENTER;
+}
+.table-view:focused {
+    -fx-background-color: transparent,transparent, white;
+}
+.table-row-cell {    
+    -fx-background-color: white;
+}
+.table-row-cell:odd {
+    -fx-background-color: #ecf0f1;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+.table-view:focused .table-row-cell:focused,.table-view:focused .table-row-cell:focused:odd {
+    -fx-background-color: -fx-box-border, white;
+    -fx-background-insets: 0, 1, 2;
+}
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: red, #3599cd;
+}
+.table-view:focused .table-row-cell:filled:selected, .table-view:row-selection .table-row-cell:filled:hover:selected {    
+    -fx-background-color: #3599cd;
+    -fx-text-fill: -fx-text-inner-color;
+    -fx-background-insets: 0,1 1 1 1 0;
+}
+.table-view:focused .table-row-cell:filled:focused:selected:hover {    
+    -fx-background-color: red;
+}
+.table-row-cell:filled:selected:focused, .table-row-cell:filled:selected {
+    -fx-background-color: rgb(205,205,205);
+}
+.table-view:row-selection .table-row-cell:filled:hover { 
+    -fx-background-color: #2a7ea3;
+}
+.table-view:row-selection .table-row-cell:filled:focused:hover { 
+    -fx-background-color: rgb(205,205,205);
+}
+.table-view:focused .table-row-cell:filled:focused:hover {
+    -fx-background-color: -fx-box-border,transparent;
+}
+.table-view .column-header-background {
+    -fx-background-color: white;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: #eee;    
+    -fx-size: 35;
+    -fx-border-color: transparent #3599cd #3599cd transparent ;
+
+}
+.table-view .show-hide-columns-button {
+    -fx-background-color: white;
+    -fx-border-color: #3599cd;
+}
+.table-view .column-drag-header {    
+    -fx-background-color: rgb(45,137,239);
+    -fx-opacity: 0.6;
+}
+.table-view .column-resize-line {  
+    -fx-background-color: rgb(45,137,239);
+}
+.table-view .column-overlay {
+    -fx-background-color: #3599cd;
+    -fx-opacity: 0.2;
+}
+.table-view .arrow {
+    -fx-padding: 0.2em;
+    -fx-shape: "M4,17v-2.889l4.124-3.86l4.125,3.86V17l-4.125-3.375L4,17z";
+    -fx-background-color:#2c3e50;
+}

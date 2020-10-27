@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.StatusBar?>
+
+<HBox fx:id="HBO" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1242.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.MainController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="628.0" prefWidth="240.0" style="-fx-background-color: #2f3640;">
+         <children>
+            <ImageView fx:id="Image1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label fx:id="L1" alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="227.0" style="-fx-text-alignment: center;" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <VBox fx:id="Main" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #fff; -fx-border-width: 5px 0px 5px 0px; -fx-border-style: solid; -fx-background-color: #353b48;" VBox.vgrow="ALWAYS" />
+         </children></VBox>
+      <VBox prefHeight="629.0" prefWidth="572.0" style="-fx-background-color: #ecf0f1;" HBox.hgrow="ALWAYS">
+         <children>
+            <HBox prefHeight="27.0" prefWidth="880.0" VBox.vgrow="NEVER">
+               <children>
+                  <MenuBar HBox.hgrow="ALWAYS">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="الشاشات الاساسية">
+                        <items>
+                          <MenuItem mnemonicParsing="false" onAction="#ADD_ST" text="اضافة الطالب">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="DIGIT1" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator></MenuItem>
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="الادارة">
+                        <items>
+                          <MenuItem mnemonicParsing="false" onAction="#ADD_Sub" text="ادارة الاقسام">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="DOWN" code="F1" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                                 </accelerator></MenuItem>
+                              <MenuItem mnemonicParsing="false" onAction="#Amount" text="تسجيل التحصيل">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="DOWN" code="F3" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                              <MenuItem mnemonicParsing="false" onAction="#Refreh" text="Refrech">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="DOWN" code="F2" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="19.0" prefWidth="200.0">
+                     <items>
+                        <Label fx:id="L21" onMouseClicked="#exit" prefHeight="15.0" prefWidth="31.0" style="-fx-alignment: center;" text="X" textFill="RED">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="L2" onMouseClicked="#Mux" prefHeight="15.0" prefWidth="31.0" text="تصغير">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                     </items>
+                  </ToolBar>
+               </children>
+            </HBox>
+            <VBox id="Ach" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <ScrollPane fx:id="SP" fitToHeight="true" fitToWidth="true" hvalue="1.0" pannable="true" prefHeight="200.0" prefWidth="200.0" visible="false" vvalue="1.0" VBox.vgrow="ALWAYS">
+                     <content>
+                        <VBox fx:id="SP1" prefHeight="647.0" prefWidth="992.0" style="-fx-background-color: black;">
+                           <padding>
+                              <Insets top="25.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <StatusBar fx:id="SB" nodeOrientation="RIGHT_TO_LEFT" />
+         </children></VBox>
+   </children>
+</HBox>

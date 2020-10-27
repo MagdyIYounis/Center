@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="AP" prefHeight="736.0" prefWidth="1121.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Levels.LevelsController">
+    <stylesheets>
+        <URL value="@levels.css" />
+    </stylesheets>
+   <children>
+      <VBox prefHeight="736.0" prefWidth="1121.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #00bcd4;">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="372.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="الاعدادات الاقسام" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="50.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="75.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                           <image>
+                              <Image url="@../image/Levels.png" />
+                           </image>
+                        </ImageView>
+                     </children></VBox>
+                  <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXButton fx:id="Exit" buttonType="RAISED" contentDisplay="CENTER" onAction="#Exit" ripplerFill="BLACK" text="X" textFill="RED">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children></VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <JFXTabPane HBox.hgrow="ALWAYS">
+                     <tabs>
+                        <Tab text="الجامعة">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXTextField fx:id="Name_UN" alignment="CENTER" labelFloat="true" layoutX="14.0" layoutY="51.0" prefHeight="35.0" prefWidth="200.0" promptText="الجامعة">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <ToolBar layoutX="14.0" layoutY="113.0" prefHeight="45.0" prefWidth="278.0" style="-fx-background-color: none;">
+                                       <items>
+                                          <JFXButton fx:id="ADD_UN" buttonType="RAISED" onAction="#ADD_UN" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="اضافة" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="Update_UN" buttonType="RAISED" onAction="#Update_UN" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="تعديل" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="Delete_UN" buttonType="RAISED" onAction="#Delete_UN" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="حذف" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                       </items>
+                                    </ToolBar>
+                                    <JFXTreeTableView fx:id="T_UN" layoutX="14.0" layoutY="187.0" onMouseClicked="#select_T1" prefHeight="400.0" prefWidth="556.0">
+                                       <columnResizePolicy>
+                                          <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy></JFXTreeTableView>
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="الكلية">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <ToolBar layoutX="14.0" layoutY="176.0" prefHeight="45.0" prefWidth="278.0" style="-fx-background-color: none;">
+                                       <items>
+                                          <JFXButton fx:id="ADD_FA" buttonType="RAISED" onAction="#ADD_FA" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="اضافة" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="Update_FA" buttonType="RAISED" onAction="#Update_FA" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="تعديل" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="Delete_FA" buttonType="RAISED" onAction="#Delete_FA" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="حذف" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                       </items>
+                                    </ToolBar>
+                                    <JFXComboBox fx:id="UN_COM" labelFloat="true" layoutX="14.0" layoutY="40.0" prefHeight="35.0" prefWidth="150.0" promptText="الجامعة" />
+                                    <JFXTextField fx:id="Faclty" labelFloat="true" layoutX="14.0" layoutY="111.0" prefHeight="35.0" prefWidth="150.0" promptText="الكلية">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTreeTableView fx:id="T_Fa" layoutX="14.0" layoutY="239.0" onMouseClicked="#select_T2" prefHeight="353.0" prefWidth="638.0">
+                                       <columnResizePolicy>
+                                          <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy></JFXTreeTableView>
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="الفرقة">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXComboBox fx:id="UN_COM1" labelFloat="true" layoutX="14.0" layoutY="38.0" prefHeight="35.0" prefWidth="150.0" promptText="الجامعة" />
+                                    <JFXComboBox fx:id="FA_Com" labelFloat="true" layoutX="14.0" layoutY="99.0" prefHeight="35.0" prefWidth="150.0" promptText="الكلية" />
+                                    <JFXTreeTableView fx:id="T_Ye" layoutX="14.0" layoutY="265.0" onMouseClicked="#select_T3" prefHeight="322.0" prefWidth="686.0">
+                                       <columnResizePolicy>
+                                          <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy></JFXTreeTableView>
+                                    <JFXTextField fx:id="year" labelFloat="true" layoutX="14.0" layoutY="163.0" prefHeight="35.0" prefWidth="150.0" promptText="الفرقة">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <ToolBar layoutX="14.0" layoutY="211.0" prefHeight="45.0" prefWidth="278.0" style="-fx-background-color: none;">
+                                       <items>
+                                          <JFXButton fx:id="ADD_FA1" buttonType="RAISED" onAction="#ADD_FA1" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="اضافة" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="Update_FA1" buttonType="RAISED" onAction="#Update_FA1" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="تعديل" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="Delete_FA1" buttonType="RAISED" onAction="#Delete_FA1" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="حذف" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                       </items>
+                                    </ToolBar>
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Staff">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <ToolBar layoutX="14.0" layoutY="241.0" prefHeight="45.0" prefWidth="278.0" style="-fx-background-color: none;">
+                                       <items>
+                                          <JFXButton fx:id="ADD_S" buttonType="RAISED" onAction="#ADD_S" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="اضافة" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="Update_S" buttonType="RAISED" onAction="#Update_S" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="تعديل" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="Delete_S" buttonType="RAISED" onAction="#Delete_S" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="حذف" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                       </items>
+                                    </ToolBar>
+                                    <JFXTextField fx:id="Name_S" labelFloat="true" layoutX="14.0" layoutY="31.0" prefHeight="35.0" prefWidth="150.0" promptText="الاسم">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="Phone_S" labelFloat="true" layoutX="14.0" layoutY="86.0" prefHeight="35.0" prefWidth="150.0" promptText="رقم التليفون">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="Email_S" labelFloat="true" layoutX="14.0" layoutY="142.0" prefHeight="35.0" prefWidth="150.0" promptText="البريد الاكتروني">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="P_S" alignment="CENTER" labelFloat="true" layoutX="14.0" layoutY="197.0" prefHeight="35.0" prefWidth="61.0" promptText="النسبة" text="0.0145">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTreeTableView fx:id="T_Sta" layoutX="14.0" layoutY="301.0" onMouseClicked="#select_T4" prefHeight="288.0" prefWidth="1095.0">
+                                       <columnResizePolicy>
+                                          <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy></JFXTreeTableView>
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="المواد">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXComboBox fx:id="UN_COM11" labelFloat="true" layoutX="24.0" layoutY="38.0" prefHeight="35.0" prefWidth="150.0" promptText="الجامعة" />
+                                    <JFXComboBox fx:id="FA_Com1" labelFloat="true" layoutX="24.0" layoutY="98.0" prefHeight="35.0" prefWidth="150.0" promptText="الكلية" />
+                                    <JFXComboBox fx:id="YE_Com11" labelFloat="true" layoutX="24.0" layoutY="156.0" prefHeight="35.0" prefWidth="150.0" promptText="الفرقة" />
+                                    <JFXTextField fx:id="Name_Su" labelFloat="true" layoutX="24.0" layoutY="221.0" prefHeight="35.0" prefWidth="150.0" promptText="اسم الماده">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="Amount_Su" alignment="CENTER" labelFloat="true" layoutX="191.0" layoutY="221.0" prefHeight="35.0" prefWidth="75.0" promptText="المبلغ" text="0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="Count_G" alignment="CENTER" labelFloat="true" layoutX="282.0" layoutY="221.0" prefHeight="35.0" prefWidth="84.0" promptText="عدد المجميع" text="0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <TableView fx:id="T_G" editable="true" layoutX="377.0" layoutY="14.0" onMouseClicked="#select_G" prefHeight="246.0" prefWidth="430.0" style="-fx-alignment: CENTER;">
+                                      <columns>
+                                        <TableColumn fx:id="NUM" prefWidth="46.0" style="-fx-alignment: CENTER;" text="رقم" />
+                                        <TableColumn fx:id="Count_GR" prefWidth="79.0" style="-fx-alignment: CENTER;" text="الحد الاقصي" />
+                                          <TableColumn fx:id="Day1" prefWidth="117.0" style="-fx-alignment: CENTER;" text="اليوم الاول" />
+                                          <TableColumn fx:id="Day2" prefWidth="122.0" style="-fx-alignment: CENTER;" text="اليوم الثاني" />
+                                          <TableColumn fx:id="Hours" prefWidth="63.0" style="-fx-alignment: CENTER;" text="الساعة" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                    <ToolBar layoutX="24.0" layoutY="278.0" prefHeight="45.0" prefWidth="278.0" style="-fx-background-color: none;">
+                                       <items>
+                                          <JFXButton fx:id="ADD_S1" buttonType="RAISED" onAction="#ADD_S1" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="اضافة" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton fx:id="Update_S1" buttonType="RAISED" onAction="#Update_S1" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="تعديل" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton buttonType="RAISED" onAction="#Refrech" prefHeight="35.0" prefWidth="85.0" ripplerFill="BLACK" style="-fx-background-color: #00bcd4;" text="تنظيف" textFill="WHITE">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </JFXButton>
+                                       </items>
+                                    </ToolBar>
+                                    <JFXTreeTableView fx:id="T_Su" layoutX="12.0" layoutY="332.0" onMouseClicked="#select_T5" prefHeight="255.0" prefWidth="1099.0">
+                                       <columnResizePolicy>
+                                          <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy></JFXTreeTableView>
+                                    <JFXComboBox fx:id="ST_COM" labelFloat="true" layoutX="191.0" layoutY="156.0" prefHeight="35.0" prefWidth="150.0" promptText="المدرس" />
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                     </tabs>
+                  </JFXTabPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

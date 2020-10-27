@@ -1,0 +1,20 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+#Ach{
+
+    -fx-background-image: url("Main.png");
+    -fx-background-repeat: stretch;  
+    -fx-background-position: center center;
+    -fx-background-size: 90% 85%;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 10, .5, 10, 10); 
+    -fx-alignment: center;
+}
+#SP{
+    
+    -fx-arc-height: 100%
+     
+    
+}
