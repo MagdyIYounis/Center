@@ -66,7 +66,7 @@ public class mysql {
 
         SetURL();
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(URL);
             resultcon = true;
             return true;
@@ -351,7 +351,7 @@ public class mysql {
         }
     }
 
-    public static JSONArray GetData(String Statement) {
+    public static synchronized JSONArray GetData(String Statement) {
 
         try {
 
@@ -362,9 +362,9 @@ public class mysql {
             JSONArray JA = new JSONArray();
             while (x.next()) {
                 JSONObject JO = new JSONObject();
-                
-                for(int x1 = 0 ; x1 < column_count ;x1++){
-                    JO.put(rsmd.getColumnName(x1+1), x.getString(x1+1));
+
+                for (int x1 = 0; x1 < column_count; x1++) {
+                    JO.put(rsmd.getColumnName(x1 + 1), x.getString(x1 + 1));
                 }
                 JA.put(JO);
             }
@@ -592,11 +592,15 @@ public class mysql {
     public static ObservableList Table_FX4(String statment) throws SQLException {
         ObservableList<Total_Amount> users = FXCollections.observableArrayList();
 
-        Statement S = con.createStatement();
-        ResultSet x = S.executeQuery(statment);
-        while (x.next()) {
-            Total_Amount emp = new Total_Amount(x.getString(1), x.getString(2), x.getString(3));
-            users.add(emp);
+        try {
+            Statement S = con.createStatement();
+            ResultSet x = S.executeQuery(statment);
+            while (x.next()) {
+                Total_Amount emp = new Total_Amount(x.getString(1), x.getString(2), x.getString(3));
+                users.add(emp);
+            }
+        } catch (Exception ex) {
+
         }
 
         return users;

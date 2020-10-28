@@ -235,8 +235,14 @@ public class SubjectController implements Initializable {
                 tree3.getColumns().setAll(T_PY, Da_t, TY_t);
                 tree3.setRoot(root2);
                 tree3.setShowRoot(false);
-                String Tot = (String) mysql.PrintTable("SELECT SUM(`total`) -( SELECT SUM(`total`) FROM `amount_subject` s WHERE `Name_SU` = '" + Tital.getText() + "' AND s.`Name_OF_Type` = 'سحب' GROUP BY `Name_SU` ) as Amount, `DATE` AS DATE, `Name_SU` AS SUBJECT, `Name_OF_Type` AS TYPE FROM `amount_subject` WHERE `Name_SU` = '" + Tital.getText() + "' AND `Name_OF_Type` = 'كاش' GROUP BY `Name_SU`").Table[0][0];
-                tree3.getSelectionModel().getModelItem(tree3.getCurrentItemsCount() - 1).getValue().Total.set(Tot);
+                String Tot = "0";
+                try {
+                    Tot = (String) mysql.PrintTable("SELECT SUM(`total`) -( SELECT SUM(`total`) FROM `amount_subject` s WHERE `Name_SU` = '" + Tital.getText() + "' AND s.`Name_OF_Type` = 'سحب' GROUP BY `Name_SU` ) as Amount, `DATE` AS DATE, `Name_SU` AS SUBJECT, `Name_OF_Type` AS TYPE FROM `amount_subject` WHERE `Name_SU` = '" + Tital.getText() + "' AND `Name_OF_Type` = 'كاش' GROUP BY `Name_SU`").Table[0][0];
+                    tree3.getSelectionModel().getModelItem(tree3.getCurrentItemsCount() - 1).getValue().Total.set(Tot);
+                } catch (Exception ex) {
+                    Tot = "0";
+                }
+
                 Group.getItems().add("الكل");
                 if (!s.isShowing()) {
                     s.show();

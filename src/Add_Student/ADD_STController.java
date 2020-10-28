@@ -429,10 +429,15 @@ public class ADD_STController implements Initializable {
                             new Thread() {
                                 @Override
                                 public void run() {
+                                    String ID_Group;
                                     String subject = JO.getString("Name Subject");
                                     String Total = JO.getString("Total");
                                     String Date_Login = JO.getString("Date Loign");
-                                    String ID_Group = JO.getString("ID Group");
+                                    try {
+                                        ID_Group = JO.getString("ID Group");
+                                    } catch (Exception ex) {
+                                        ID_Group = null;
+                                    }
 
                                     HBox HB = new HBox();
 
@@ -767,83 +772,114 @@ public class ADD_STController implements Initializable {
         VB_Loader1.setVisible(true);
         ObservableList<Label> targetItems = Subject.getTargetItems();
         int count_sub = targetItems.size();
+        String ID_St = ID_Subject.getText();
         if (count_sub > 0) {
 
-            for (int x = 0; x < count_sub; x++) {
-                String ID_Sub = (String) mysql.PrintTable("SELECT `ID_SU` FROM `subject` WHERE `Name_SU`='" + targetItems.get(x).getText() + "' AND `ID_YE` = (SELECT student.ID_YE from student WHERE student.ID_ST = " + ID_Subject.getText() + ");").Table[0][0];
-                boolean Run = mysql.Run("INSERT INTO `payment`( `Amount_PA`, `Date_PA`, `ID_ST`, `ID_SU`, `ID_User`, `ID_PA_TY`) VALUES (0,Now()," + ID_Subject.getText() + "," + ID_Sub + "," + User.getID_Us() + ",1);");
-                boolean Check1 = mysql.Check1("SELECT * FROM `group_student` WHERE `ID_ST`=" + ID_Subject.getText() + " AND `ID_SU`=" + ID_Sub);
-                if (Check1 == false) {
-                    if (count_sub == 1) {
-
-                        String ID_Gr = (String) mysql.PrintTable("SELECT `ID_GR` FROM `group_subject` WHERE `ID_SU` = " + ID_Sub + " ORDER BY `ID_GR` DESC").Table[0][0];
-                        String Count_Ava = (String) mysql.PrintTable("SELECT `Count Available` FROM `count_group` WHERE `ID_GR`=" + ID_Gr).Table[0][0];
-                        if (Integer.parseInt(Count_Ava) > 0) {
-
-                            boolean Run1 = mysql.Run("INSERT INTO `group_student`(`ID_ST`, `ID_SU`, `ID_GR`) VALUES (" + ID_Subject.getText() + "," + ID_Sub + "," + ID_Gr + ")");
-
-                            if (!Run1) {
-                                Tools.Tools_JavaFX.Alert_T(AlertType.ERROR, "اضافة المجموعة", "هناكه مشكلة", "يرجوا التاكد من المعلومات المسجله");
-
-                            }
-
+            new Thread() {
+                @Override
+                public void run() {
+                    String Qua = "INSERT INTO `payment`( `Amount_PA`, `Date_PA`, `ID_ST`, `ID_SU`, `ID_User`, `ID_PA_TY`) VALUES ";
+                    for (int x = 0; x < count_sub; x++) {
+                        String ID_Sub = mysql.GetData("SELECT `ID_SU` FROM `subject` WHERE `Name_SU`='" + targetItems.get(x).getText() + "' AND `ID_YE` = (SELECT student.ID_YE from student WHERE student.ID_ST = " + ID_St + ");").getJSONObject(0).getString("ID_SU");
+                        if (x == (count_sub - 1)) {
+                            Qua += " (0,Now()," + ID_St + "," + ID_Sub + "," + User.getID_Us() + ",1);";
                         } else {
-
-                            String ID_Gr_O = (String) mysql.PrintTable("SELECT `ID_GR` FROM `count_group` WHERE `ID_SU`=" + ID_Sub + "  ORDER BY `count_group`.`Count Available` DESC").Table[0][0];
-                            boolean Run1 = mysql.Run("INSERT INTO `group_student`(`ID_ST`, `ID_SU`, `ID_GR`) VALUES (" + ID_Subject.getText() + "," + ID_Sub + "," + ID_Gr_O + ");");
-
-                            if (!Run1) {
-                                Tools.Tools_JavaFX.Alert_T(AlertType.ERROR, "اضافة المجموعة", "هناكه مشكلة", "يرجوا التاكد من المعلومات المسجله");
-
-                            }
-
+                            Qua += " (0,Now()," + ID_St + "," + ID_Sub + "," + User.getID_Us() + ",1),";
                         }
-
-                    } else {
-                        String ID_Gr_O = null;
-                        String Count_Ava = "5";
-                        try {
-
-                            ID_Gr_O = (String) mysql.PrintTable("SELECT `ID_GR` FROM `count_group` WHERE `ID_SU`=" + ID_Sub + "  AND `Time` not in ( SELECT  `Day_Of_Time` FROM `group_student_v` WHERE `ID_ST`= " + ID_Subject.getText() + " )").Table[0][0];
-                            Count_Ava = (String) mysql.PrintTable("SELECT `Count Available` FROM `count_group` WHERE `ID_GR`=" + ID_Gr_O).Table[0][0];
-                        } catch (Exception e) {
-                            ID_Gr_O = (String) mysql.PrintTable("SELECT `ID_GR` FROM `group_subject` WHERE `ID_SU`=" + ID_Sub + " GROUP BY rand()").Table[0][0];
-
-                        }
-                        if (Integer.parseInt(Count_Ava) > 0) {
-
-                            boolean Run1 = mysql.Run("INSERT INTO `group_student`(`ID_ST`, `ID_SU`, `ID_GR`) VALUES (" + ID_Subject.getText() + "," + ID_Sub + "," + ID_Gr_O + ")");
-
-                            if (!Run1) {
-                                Tools.Tools_JavaFX.Alert_T(AlertType.ERROR, "اضافة المجموعة", "هناكه مشكلة", "يرجوا التاكد من المعلومات المسجله");
-
-                            }
-
-                        } else {
-
-                            String ID_Gr_O1 = (String) mysql.PrintTable("SELECT `ID_GR` FROM `count_group` WHERE `ID_SU`=" + ID_Sub + "  ORDER BY `count_group`.`Count Available` DESC").Table[0][0];
-                            boolean Run1 = mysql.Run("INSERT INTO `group_student`(`ID_ST`, `ID_SU`, `ID_GR`) VALUES (" + ID_Subject.getText() + "," + ID_Sub + "," + ID_Gr_O1 + ")");
-
-                            if (!Run1) {
-                                Tools.Tools_JavaFX.Alert_T(AlertType.ERROR, "اضافة المجموعة", "هناكه مشكلة", "يرجوا التاكد من المعلومات المسجله");
-
-                            }
-
-                        }
-
                     }
+                    boolean Run = mysql.Run(Qua);
+
+                    if (Run) {
+                        Platform.runLater(() -> {
+                            Tools.Tools_JavaFX.Alert_T(AlertType.CONFIRMATION, "رسالة تاكيد", "ـم تسجيل المواد", "بنجاحح");
+
+                        });
+                    }
+
                 }
-            }
-            String ID_St = ID_Subject.getText();
-            ID_Subject.setText("0");
-            ID_Subject.setText(ID_St);
-            ID_Amount.setText("0");
-            ID_Amount.setText(ID_St);
-            amount_V(ID_St);
-            tab.getSelectionModel().select(2);
-            ID_Subject.setText("0");
-            Subject.getSourceItems().clear();
-            Subject.getTargetItems().clear();
+            }.start();
+
+            new Thread() {
+                @Override
+                public void run() {
+                    for (int x = 0; x < count_sub; x++) {
+                        String ID_Sub = mysql.GetData("SELECT `ID_SU` FROM `subject` WHERE `Name_SU`='" + targetItems.get(x).getText() + "' AND `ID_YE` = (SELECT student.ID_YE from student WHERE student.ID_ST = " + ID_St + ");").getJSONObject(0).getString("ID_SU");
+                        boolean Check1 = mysql.Check1("SELECT * FROM `group_student` WHERE `ID_ST`=" + ID_St + " AND `ID_SU`=" + ID_Sub);
+                        if (Check1 == false) {
+                            if (count_sub == 1) {
+
+                                String ID_Gr = (String) mysql.PrintTable("SELECT `ID_GR` FROM `group_subject` WHERE `ID_SU` = " + ID_Sub + " ORDER BY `ID_GR` DESC").Table[0][0];
+                                String Count_Ava = "0";
+                                try {
+                                    Count_Ava = (String) mysql.PrintTable("SELECT `Count Available` FROM `count_group` WHERE `ID_GR`=" + ID_Gr).Table[0][0];
+
+                                } catch (Exception ex) {
+                                    Count_Ava = "0";
+                                }
+                                if (Integer.parseInt(Count_Ava) > 0) {
+
+                                    boolean Run1 = mysql.Run("INSERT INTO `group_student`(`ID_ST`, `ID_SU`, `ID_GR`) VALUES (" + ID_St + "," + ID_Sub + "," + ID_Gr + ")");
+
+                                    if (!Run1) {
+                                        Tools.Tools_JavaFX.Alert_T(AlertType.ERROR, "اضافة المجموعة", "هناكه مشكلة", "يرجوا التاكد من المعلومات المسجله");
+
+                                    }
+
+                                } else {
+
+                                    String ID_Gr_O = (String) mysql.PrintTable("SELECT `ID_GR` FROM `count_group` WHERE `ID_SU`=" + ID_Sub + "  ORDER BY `count_group`.`Count Available` DESC").Table[0][0];
+                                    boolean Run1 = mysql.Run("INSERT INTO `group_student`(`ID_ST`, `ID_SU`, `ID_GR`) VALUES (" + ID_St + "," + ID_Sub + "," + ID_Gr_O + ");");
+
+                                    if (!Run1) {
+                                        Tools.Tools_JavaFX.Alert_T(AlertType.ERROR, "اضافة المجموعة", "هناكه مشكلة", "يرجوا التاكد من المعلومات المسجله");
+
+                                    }
+
+                                }
+
+                            } else {
+                                String ID_Gr_O = null;
+                                String Count_Ava = "5";
+                                try {
+
+                                    ID_Gr_O = (String) mysql.PrintTable("SELECT `ID_GR` FROM `count_group` WHERE `ID_SU`=" + ID_Sub + "  AND `Time` not in ( SELECT  `Day_Of_Time` FROM `group_student_v` WHERE `ID_ST`= " + ID_St + " )").Table[0][0];
+                                    Count_Ava = (String) mysql.PrintTable("SELECT `Count Available` FROM `count_group` WHERE `ID_GR`=" + ID_Gr_O).Table[0][0];
+                                } catch (Exception e) {
+                                    ID_Gr_O = (String) mysql.PrintTable("SELECT `ID_GR` FROM `group_subject` WHERE `ID_SU`=" + ID_Sub + " GROUP BY rand()").Table[0][0];
+
+                                }
+                                if (Integer.parseInt(Count_Ava) > 0) {
+
+                                    boolean Run1 = mysql.Run("INSERT INTO `group_student`(`ID_ST`, `ID_SU`, `ID_GR`) VALUES (" + ID_St + "," + ID_Sub + "," + ID_Gr_O + ")");
+
+                                    if (!Run1) {
+                                        Tools.Tools_JavaFX.Alert_T(AlertType.ERROR, "اضافة المجموعة", "هناكه مشكلة", "يرجوا التاكد من المعلومات المسجله");
+
+                                    }
+
+                                } else {
+
+                                    String ID_Gr_O1 = (String) mysql.PrintTable("SELECT `ID_GR` FROM `count_group` WHERE `ID_SU`=" + ID_Sub + "  ORDER BY `count_group`.`Count Available` DESC").Table[0][0];
+                                    boolean Run1 = mysql.Run("INSERT INTO `group_student`(`ID_ST`, `ID_SU`, `ID_GR`) VALUES (" + ID_St + "," + ID_Sub + "," + ID_Gr_O1 + ")");
+
+                                    if (!Run1) {
+                                        Tools.Tools_JavaFX.Alert_T(AlertType.ERROR, "اضافة المجموعة", "هناكه مشكلة", "يرجوا التاكد من المعلومات المسجله");
+
+                                    }
+
+                                }
+
+                            }
+                        }
+                    }
+                    Platform.runLater(() -> {
+                        ID_Subject.setText("0");
+                        ID_Amount.setText(ID_St);
+                        amount_V(ID_St);
+                        tab.getSelectionModel().select(2);
+                    });
+                }
+            }.start();
 
         } else {
 
@@ -868,7 +904,12 @@ public class ADD_STController implements Initializable {
 
                         String ID_Sub = (String) mysql.PrintTable("SELECT `ID_SU` FROM `subject` WHERE `Name_SU`='" + CB.getText() + "'").Table[0][0];
                         String Amount = ((JFXTextField) HB.getChildren().get(1)).getText();
-                        String ID_G = ((JFXComboBox) HB.getChildren().get(3)).getSelectionModel().getSelectedItem().toString();
+                        String ID_G = null;
+                        try {
+                            ID_G = ((JFXComboBox) HB.getChildren().get(3)).getSelectionModel().getSelectedItem().toString();
+                        } catch (Exception ex) {
+                            ID_G = null;
+                        }
                         boolean Check1 = mysql.Check1("SELECT * FROM `group_student` WHERE `ID_ST`=" + ID_Amount.getText() + " AND `ID_SU`=" + ID_Sub);
                         boolean Run;
                         if (Check1) {
