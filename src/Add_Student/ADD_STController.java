@@ -897,38 +897,44 @@ public class ADD_STController implements Initializable {
                 VBox get = (VBox) Win.getChildren().get(0);
 
                 for (int x = 0; x < get.getChildren().size(); x++) {
-
                     HBox HB = (HBox) get.getChildren().get(x);
-                    CheckBox CB = (CheckBox) HB.getChildren().get(0);
-                    if (CB.isSelected()) {
+                    new Thread() {
+                        @Override
+                        public void run() {
 
-                        String ID_Sub = (String) mysql.PrintTable("SELECT `ID_SU` FROM `subject` WHERE `Name_SU`='" + CB.getText() + "'").Table[0][0];
-                        String Amount = ((JFXTextField) HB.getChildren().get(1)).getText();
-                        String ID_G = null;
-                        try {
-                            ID_G = ((JFXComboBox) HB.getChildren().get(3)).getSelectionModel().getSelectedItem().toString();
-                        } catch (Exception ex) {
-                            ID_G = null;
-                        }
-                        boolean Check1 = mysql.Check1("SELECT * FROM `group_student` WHERE `ID_ST`=" + ID_Amount.getText() + " AND `ID_SU`=" + ID_Sub);
-                        boolean Run;
-                        if (Check1) {
-                            Run = mysql.Run("UPDATE `group_student` SET `ID_GR`=" + ID_G + " WHERE `ID_ST`=" + ID_Amount.getText() + "  AND `ID_SU`=" + ID_Sub);
+                            CheckBox CB = (CheckBox) HB.getChildren().get(0);
+                            if (CB.isSelected()) {
 
-                        } else {
-                            Run = mysql.Run("INSERT INTO `group_student`(`ID_ST`, `ID_SU`, `ID_GR`) VALUES (" + ID_Amount.getText() + "," + ID_Sub + "," + ID_G + ")");
+                                String ID_Sub = (String) mysql.PrintTable("SELECT `ID_SU` FROM `subject` WHERE `Name_SU`='" + CB.getText() + "'").Table[0][0];
+                                String Amount = ((JFXTextField) HB.getChildren().get(1)).getText();
+                                String ID_G = null;
+                                try {
+                                    ID_G = ((JFXComboBox) HB.getChildren().get(3)).getSelectionModel().getSelectedItem().toString();
+                                } catch (Exception ex) {
+                                    ID_G = null;
+                                }
+                                boolean Check1 = mysql.Check1("SELECT * FROM `group_student` WHERE `ID_ST`=" + ID_Amount.getText() + " AND `ID_SU`=" + ID_Sub);
+                                boolean Run;
+                                if (Check1) {
+                                    Run = mysql.Run("UPDATE `group_student` SET `ID_GR`=" + ID_G + " WHERE `ID_ST`=" + ID_Amount.getText() + "  AND `ID_SU`=" + ID_Sub);
 
-                        }
+                                } else {
+                                    Run = mysql.Run("INSERT INTO `group_student`(`ID_ST`, `ID_SU`, `ID_GR`) VALUES (" + ID_Amount.getText() + "," + ID_Sub + "," + ID_G + ")");
 
-                        if (Integer.parseInt(Amount) != 0) {
-                            if (Amount.charAt(0) == '-') {
-                                boolean Run1 = mysql.Run("INSERT INTO `payment`(`Amount_PA`, `ID_ST`, `ID_SU`, `ID_User`, `ID_PA_TY`) VALUES (" + Amount.substring(1, Amount.length()) + "," + ID_Amount.getText() + "," + ID_Sub + "," + User.getID_Us() + ",2)");
-                            } else {
-                                boolean Run1 = mysql.Run("INSERT INTO `payment`(`Amount_PA`, `ID_ST`, `ID_SU`, `ID_User`, `ID_PA_TY`) VALUES (" + Amount + "," + ID_Amount.getText() + "," + ID_Sub + "," + User.getID_Us() + ",1)");
+                                }
+
+                                if (Integer.parseInt(Amount) != 0) {
+                                    if (Amount.charAt(0) == '-') {
+                                        boolean Run1 = mysql.Run("INSERT INTO `payment`(`Amount_PA`, `ID_ST`, `ID_SU`, `ID_User`, `ID_PA_TY`) VALUES (" + Amount.substring(1, Amount.length()) + "," + ID_Amount.getText() + "," + ID_Sub + "," + User.getID_Us() + ",2)");
+                                    } else {
+                                        boolean Run1 = mysql.Run("INSERT INTO `payment`(`Amount_PA`, `ID_ST`, `ID_SU`, `ID_User`, `ID_PA_TY`) VALUES (" + Amount + "," + ID_Amount.getText() + "," + ID_Sub + "," + User.getID_Us() + ",1)");
+                                    }
+                                }
+
                             }
                         }
 
-                    }
+                    }.start();
 
                 }
                 Win.getChildren().clear();

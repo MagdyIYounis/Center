@@ -49,7 +49,7 @@ public class mysql {
     public static boolean resultcon;
 
     private static void SetURL() {
-        String dbName = "center_elgam3a";
+        String dbName = "center_elgam3a2";
         String userName = "Mego";
         String password = "Mego2010";
         String hostname = "center.calpeky9vqvd.us-east-2.rds.amazonaws.com";
@@ -66,7 +66,7 @@ public class mysql {
 
         SetURL();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(URL);
             resultcon = true;
             return true;
