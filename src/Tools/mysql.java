@@ -49,7 +49,7 @@ public class mysql {
     public static boolean resultcon;
 
     private static void SetURL() {
-        String dbName = "center_elgam3a2";
+        String dbName = "center_elgam3a3";
         String userName = "Mego";
         String password = "Mego2010";
         String hostname = "center.calpeky9vqvd.us-east-2.rds.amazonaws.com";
