@@ -211,7 +211,7 @@ public class Add_P_UController implements Initializable {
                         Total_OF_Day1.setText(Total_P_D_S);
                         Total1.setText(Total_P_S);
                     }
-                } catch (SQLException ex) {
+                } catch (Exception ex) {
 
                 }
             });
@@ -225,7 +225,7 @@ public class Add_P_UController implements Initializable {
             Total_OF_Day1.setText(Total_P_D_S);
             Total1.setText(Total_P_S);
 
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
 
         }
 
